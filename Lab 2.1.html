@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="description"	content="Data Visualisation"/>
+	<meta name="keywords"		  content="HTML, CSS,D3"/>
+	<meta name="author"			  content="Chai Yen Thung"/>
+
+	<title>Task 2.1 Drawing with Data - Binding  </title>
+	<link rel="stylesheet" href="stylesheet.css">
+	<script src="https://d3js.org/d3.v7.min.js"></script>
+
+</head>
+
+<body> 
+	<section  class="header">   
+		<h1> The D3 Journey starts here... </h1> 
+		<h2> Author: Chai Yen Thung</h2>
+	</section>
+	
+	<nav> 
+		<ul>
+		<li><a href="file:///C:/Users/user/OneDrive%20-%20student.newinti.edu.my/AUG%202024/COS%2030045%20Data%20Visualisation/Lab%202/Lab%202.1.html"> Lab 2.1</a></li>
+		<li><a href="file:///C:/Users/user/OneDrive%20-%20student.newinti.edu.my/AUG%202024/COS%2030045%20Data%20Visualisation/Lab%202/Lab%202.2.html"> Lab 2.2</a></li>
+		<li><a href="file:///C:/Users/user/OneDrive%20-%20student.newinti.edu.my/AUG%202024/COS%2030045%20Data%20Visualisation/Lab%202/Lab%202.3.html"> Lab 2.3</a></li>
+		<li><a href="http://127.0.0.1:5500/lab2-4.html"> Lab 2.4</a></li>
+		</ul>
+		</nav>
+		<br>
+		<script>
+		
+			var dataset = [14,5,26,23,9];
+			var color1=d3.color("red")
+			
+				d3.select("body").selectAll("p")
+					.data(dataset)
+					.enter()
+					.append ("p") // based on dataset
+					.style("color",function(d){
+						if(d>10){
+							return "red"
+							}
+					})
+					.text(function (d){ 			//function d means receive data from data method 
+						if(d>10){
+						return "Warning: Joe watched " + d + " cat videos today."
+						}
+						else{
+						return "Joe watched " + d + " cat videos today";
+						}
+					});
+			
+			</script>
+		
+	<br>
+	<footer>COS30045 Data Visualisation<br>Chai Yen Thung</footer> 
+</body>
+</html>

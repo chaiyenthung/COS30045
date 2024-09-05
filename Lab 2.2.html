@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="description"	content="Data Visualisation"/>
+	<meta name="keywords"		  content="HTML, CSS,D3"/>
+	<meta name="author"			  content="Chai Yen Thung"/>
+
+	<title>Task 2.2 Drawing with Data- Bar Chart  </title>
+	<link rel="stylesheet" href="stylesheet.css">
+	<script src="https://d3js.org/d3.v7.min.js"></script>
+
+</head>
+
+<body> 
+	<section  class="header">   
+		<h1> The D3 Journey starts here... </h1> 
+		<h2> Author: Chai Yen Thung</h2>
+	</section>
+	
+	
+	<nav> 
+		<ul>
+		<li><a href="file:///C:/Users/user/OneDrive%20-%20student.newinti.edu.my/AUG%202024/COS%2030045%20Data%20Visualisation/Lab%202/Lab%202.1.html"> Lab 2.1</a></li>
+		<li><a href="file:///C:/Users/user/OneDrive%20-%20student.newinti.edu.my/AUG%202024/COS%2030045%20Data%20Visualisation/Lab%202/Lab%202.2.html"> Lab 2.2</a></li>
+		<li><a href="file:///C:/Users/user/OneDrive%20-%20student.newinti.edu.my/AUG%202024/COS%2030045%20Data%20Visualisation/Lab%202/Lab%202.3.html"> Lab 2.3</a></li>
+		<li><a href="http://127.0.0.1:5500/lab2-4.html"> Lab 2.4</a></li>
+		</ul>
+	</nav>
+		<br>
+		<script>
+	
+			var w = 500;
+			var h = 200; 
+			var barPadding = 3;
+			
+			var dataset = [14,5,26,23,9];
+			
+			var svg = d3.select("body")
+						.append("svg") 
+						.attr("width",w)
+						.attr("height",h)
+						.attr("fill","rgb(106,90,205)");
+			
+			svg.selectAll("rect")
+				.data(dataset)
+				.enter()
+				.append("rect")
+				.attr("x",function(d,i) {
+					return i*(w/dataset.length);
+				})
+				.attr("y",function (d){
+					return h - (d*4)
+				}) // y coordinate top left start from (0,0)
+				.attr("width",function (d){ 		//width of the bar
+					return (w/dataset.length-barPadding);
+				})
+				.attr("height",function(d){  		//height of the bar 
+					return d*4;
+				});
+				
+			svg.selectAll("text")			//text on the bar
+				.data(dataset)
+				.enter()
+				.append("text")
+				.text(function(d){
+					return d;
+				})
+				.attr("fill","black")
+				.attr("x", function (d,i){
+					return i*(w/dataset.length)+30;
+				})
+				.attr("y",function(d){
+					return h-(d*4)+15
+				});
+			</script>
+		
+	<br>
+	<footer>COS30045 Data Visualisation<br>Chai Yen Thung</footer> 
+</body>
+</html>
