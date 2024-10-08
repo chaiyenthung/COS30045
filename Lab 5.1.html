@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="description"	content="Data Visualisation"/>
+	<meta name="keywords"		  content="HTML, CSS,D3"/>
+	<meta name="author"			  content="Chai Yen Thung"/>
+
+	<title>Task 5.1 D3 Updates </title>
+	<link rel="stylesheet" href="stylesheet.css">
+	<script src="https://d3js.org/d3.v7.min.js"></script>
+
+</head>
+
+<body> 
+	<section  class="header">   
+		<h1> Update D3</h1> 
+		<h2> Author: Chai Yen Thung</h2>
+	</section>
+	
+	
+	<nav> 
+		<ul>
+			<li><a href="/Lab 5/Lab 5.1.html"> Lab 5.1</a></li>
+			<li><a href="/Lab 5/Lab 5.2.html"> Lab 5.2</a></li>
+			<li><a href="/Lab 5/Lab 5.3.html"> Lab 5.3</a></li>
+		<li><a href="/menu.html"> Menu</a></li>
+		</ul>
+	</nav>
+		<br>
+		<button class="button" >Update Once </button>
+		<br>
+		<script>
+	
+			var w = 500;
+			var h = 250; 
+			//var barPadding = 3;
+			
+			var dataset = [24,10,29,19,8,15,20,12,9,6,21,28];
+
+            var xScale = d3.scaleBand()
+                        .domain(d3.range(dataset.length))
+                        .rangeRound([0,w]) // enable rounding
+                        .paddingInner(0.05);
+
+			var yScale = d3.scaleLinear()
+						.domain([0,d3.max(dataset)])
+						.range([0,h])
+			
+			var svg = d3.select("body")
+						.append("svg") 
+						.attr("width",w)
+						.attr("height",h)
+						.attr("fill","#f03167");
+
+	
+			var button=d3.select("button")
+						.on("click",function(){
+						var numValues = dataset.length;
+							dataset=[];
+							maxValues=25;
+							for (var i=0;i<numValues; i++){
+								var newNumber=Math.floor(Math.random()*maxValues);
+								dataset.push(newNumber);}
+					
+			svg.selectAll("rect")
+			   .data(dataset)
+			   .attr("y",function(d){
+						return h-yScale(d);
+			   })
+			   .attr("height",function(d){
+						return yScale(d);
+			   });
+			
+
+			svg.selectAll("text") 
+				.data(dataset)
+				.text(function(d) { 
+					return d; 
+				}) 
+				.attr("fill","white")
+				.attr("x", function (d, i) { 
+					return xScale(i) - 8 +xScale.bandwidth()/2  ; 
+				}) 
+				.attr("y", function (d) { 
+					return h-yScale(d)+ 15 ;
+				});
+				
+			
+				
+			});
+            //------------create bars-------------
+			svg.selectAll("rect")
+				.data(dataset)
+				.enter()
+				.append("rect")
+				.attr("x",function(d,i) {	
+                    return xScale(i); //    <--Set x values 
+				})
+				.attr("y",function (d){
+					return h-yScale(d);
+				}) // y coordinate top left start from (0,0)
+				.attr("width",function (d){ 		//width of the bar
+					return (xScale.bandwidth());
+				})
+				.attr("height",function(d){  		//height of the bar 
+					return yScale(d);
+				});
+			
+			
+			//-------text on the bar---------
+			svg.selectAll("text")			
+				.data(dataset)
+				.enter()
+				.append("text")
+				.text(function(d){
+					return d;
+				})
+				.attr("fill","white")
+				.attr("x", function (d,i){
+					//return i*(w/dataset.length)+30;
+					return xScale(i) -8 + xScale.bandwidth() / 2; 
+				})
+				.attr("y",function(d){
+					//return h-(d*4)+15
+					return h - yScale(d) + 15;
+				});
+			</script>
+		
+	<br>
+	<footer>COS30045 Data Visualisation<br>Chai Yen Thung</footer> 
+</body>
+</html>
