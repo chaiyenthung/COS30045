@@ -1,4 +1,4 @@
-Reference area,FREQ,Frequency of observation,MEASURE,Measure,Age,SEX,Sex,TIME_PERIOD,Time period,OBS_VALUE
+area,FREQ,Frequency of observation,MEASURE,Measure,Age,SEX,Sex,TIME_PERIOD,Time period,OBS_VALUE
 Australia,A,Annual,LFEXPDMF,Life expectancy difference (male-female),60 years,_T,Total,2020,,-3
 Australia,A,Annual,LFEXPDMF,Life expectancy difference (male-female),60 years,_T,Total,2019,,-3
 Australia,A,Annual,LFEXP,Life expectancy,60 years,F,Female,1963,,19.6
